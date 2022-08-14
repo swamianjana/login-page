@@ -1,0 +1,98 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>login page</title>
+    <link rel="stylesheet" href="./login.css">
+
+</head>
+
+<body>
+    <!-- <div>, <html> =====tag -->
+    <!-- each tag have some attributes ex: 
+            <div class="abc" id="12">containt </div>
+        -->
+    <div class="login-container"> Login
+        <!-- <div class="center-text"> -->
+        <p>
+            please enter your login and password
+        </p>
+
+        <!-- <div> -->
+        <input class="border" id="emailId" stype="email" name="email" placeholder="Username">
+        <div><span id="email-error" class="error-text">* This is an error</span></div>
+        <!-- </div> -->
+
+        <br>
+        <!-- <div>  -->
+        <input class="border" id="passId" type="password" name="myPassword" placeholder="password">
+        <div><span id="pass-error" class="error-text">* This is an error</span></div>
+
+
+
+
+        <!-- </div> -->
+        <h3>Forget password?</h3>
+        <button onclick="saveData()" class="login-btn">Login </button>
+
+        <!-- </div> -->
+        <br>
+        <h3><b><span>Verified</b></span></h3>
+        
+        <!-- <div> -->
+        <!-- <h3>Verified</h3>
+        <button onclick="saveData()"
+        class="verified-btn"><b>Verified</b></button>
+        </div> -->
+    </div>
+
+    <script>
+    
+    function saveData() {
+        let email = 
+         document.getElementById("emailId").value;
+         console.log("email: ",email);
+        let pass = 
+    document.getElementById("passId").value;
+    console.log("password: ",pass);
+
+    
+// for finding length
+    // console.log(" email length: ", email.length)
+
+    if(email.length > 10 ) {
+    document.getElementById("email-error").innerText = "email should be less than  10 character";
+} 
+else{
+    document.getElementById("email-error").innerText = "";
+}
+
+if(email == "anj@gmail.com") {
+        console.log("valid")
+}else{
+    console.log("emailId  is invalid")
+
+}
+
+
+
+    let abc = 
+    document.getElementById("passId").value;
+    console.log("pass:",abc);
+
+    if(abc.length < 8 ){
+        document.getElementById("pass-error").innerText = "password should be greater than 8 character";
+    }else{ document.getElementById("pass-error").innerText = "";
+    }
+
+if(pass == "123456789"){
+     console.log("valid")
+}else{
+    console.log("passId is invalid")
+}
+  
+    }
+ </script>   
+</body>
+
+</html>

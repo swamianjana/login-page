@@ -1,0 +1,162 @@
+  <!DOCTYPE>
+
+  <html>
+
+  <head>
+      <title>javascript forms validation</title>
+      <style>
+          body {
+              padding: 10px 20px;
+          }
+
+          .formdesign {
+              font-size: 20px;
+          }
+
+          .formdesign input {
+              width: 200px;
+              height: 24px;
+              padding: 4px 12px;
+              border: 1px solid black;
+              margin: 5px;
+              border-radius: 12px;
+              font-size: 12px;
+              color: black;
+          }
+
+          .formdesign {
+              color: brown;
+          }
+
+          .but {
+              border-radius: 50px;
+              width: 160px;
+              height: 50px;
+              font-size: 40px;
+              margin: 10px 10px;
+
+          }
+      </style>
+  </head>
+
+  <body>
+      <h1>welcome to the best form on Internet!</h1>
+
+      <form action="/" name="myForm" 
+      onsubmit="return validation()" 
+      method="post">
+
+
+          <div class="formdesign" id="name">
+              name: <input type="text" name="fname" required><b><span class="formerror">*this
+                      is an error</span></b>
+
+          </div>
+
+          <div class="formdesign" id="email">
+              email: <input type="email" name="email" required><b><span class="formerror"> *this
+                      is an error</span></b>
+
+          </div>
+
+          <div class="formdesign" id="phone">
+              phone: <input type="phone" name="phone" required><b><span class="formerror"> *this
+                      is an error</span></b>
+
+          </div>
+
+
+          <div class="formdesign" id="pass">
+              password: <input type="password" name="pass"><b>><span class="formerror" required> *this is an
+                      error</span></b>
+
+          </div>
+
+          <div class="formdesign" id="cpass">
+              confirm password: <input type="password" name="cpass" required><b><span class="formerror"> *this is an error</span></b>
+
+          </div>
+
+          <input class="but" type="submit" value="submit">
+
+      </form>
+  </body>
+
+  <script>
+      function clearErrors() {
+
+          errors = document.getElementsByClassName('formerror');
+          for (let item of errors) {
+
+              item.innerHTML = "";
+          }
+
+      }
+
+
+      function seterror(id, error) {
+          //   sets error inside tag of id
+          element = document.getElementById(id);
+          element.getElementsByClassName('formerror')[0].innerHTML = error;
+      }
+
+
+      function validation() {
+          var returnval = true;
+          clearErrors();
+
+          console.log("Start--------------");
+
+
+          //   perrform validation ad if validatiom fails ,
+          // set the value of returnval to false
+
+          // we can fetch data from html by these ways:
+          // 1) document.forms['myForm']["fname"].value
+          // 2) document.getElementsByName("fname")[0].value
+
+          var name = document.forms['myForm']['fname'].value;
+
+          console.log("Start-------------- Name: ", name);
+          if (name.length < 5) {
+              seterror("name", "*length of name is too short");
+              returnval = false;
+          }
+          if (name.length == 0) {
+              seterror("name", "*length of name cannot be zero");
+              returnval = false;
+          }
+          var email = document.forms['myForm']['email'].value;
+          if (email.length > 15) {
+              seterror("email", "*email length is too long");
+              returnval = false;
+          }
+
+          var phone = document.forms['myForm']['phone'].value;
+          if (phone.length != 10) {
+              seterror("phone", "*phone number should be of 10 digit");
+              returnval = false;
+          }
+
+          var password = document.forms['myForm']['pass'].value;
+          if (password.length < 6) {
+
+              // Quiz : create a logic to allow only those passwords which contain atleast one letter, one number and one special character and one uppercase letter
+              seterror("pass", "*password should be at least 6 characters long");
+              returnval = false;
+          }
+
+          var cpassword = document.forms['myForm']['cpass'].value;
+          if (cpassword != password) {
+
+              // Quiz : create a logic to allow only those passwords which contain atleast one letter, one number and one special character and one uppercase letter
+              seterror("cpass", "*password and Confirm password should be match");
+              returnval = false;
+          }
+          console.log("END--------------");
+ 
+          return returnval;
+      }
+  </script>
+
+  </html>
